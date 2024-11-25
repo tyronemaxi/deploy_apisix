@@ -27,7 +27,7 @@ services:
 #      - "9443:9443"  # 外部请求访问 API 网关（HTTPS）
     volumes:
       - ./data/log:/usr/local/apisix/logs
-      - ./conf/config.yaml:/usr/local/apisix/conf/config.yaml:ro
+      - ./conf/apisix/config.yaml:/usr/local/apisix/conf/config.yaml:ro
     depends_on:
       - etcd
     restart: always
