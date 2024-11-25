@@ -1,19 +1,17 @@
 version: '3.7'
 
 services:
-  # ETCD 是 APISIX 的配置存储
   etcd:
     image: bitnami/etcd:3.5.4
     container_name: etcd
-    hostname: etcd
     environment:
-      - ALLOW_NONE_AUTHENTICATION=yes
-#      - ETCD_ADVERTISE_CLIENT_URLS="http://0.0.0.0:2379"
-#      - ETCD_LISTEN_CLIENT_URLS="http://0.0.0.0:2379"
+       - ALLOW_NONE_AUTHENTICATION=yes
+       - ETCD_ADVERTISE_CLIENT_URLS=http://etcd:2379
+       - ETCD_LISTEN_CLIENT_URLS=http://0.0.0.0:2379
+    volumes:
+      - ./data/etcd:/bitnami/etcd
     ports:
       - "2379:2379"
-    volumes:
-      - etcd-data:/etcd-data
     restart: always
     networks:
       - apisix-network
@@ -52,10 +50,8 @@ services:
       - apisix-network
 
 
-volumes:
-  etcd-data:
-    driver: local
-
 networks:
   apisix-network:
-    driver: bridge
+    external: true
+
+
