@@ -24,7 +24,7 @@ services:
       - "9080:9080"  # 外部请求访问 API 网关
 #      - "9443:9443"  # 外部请求访问 API 网关（HTTPS）
     volumes:
-      - ./data/log:/usr/local/apisix/logs
+      - ./data/log/apisix:/usr/local/apisix/logs
       - ./conf/apisix/config.yaml:/usr/local/apisix/conf/config.yaml:ro
     depends_on:
       - etcd
