@@ -5,9 +5,10 @@ services:
     image: bitnami/etcd:3.5.4
     container_name: etcd
     environment:
-       - ALLOW_NONE_AUTHENTICATION=yes
-       - ETCD_ADVERTISE_CLIENT_URLS=http://etcd:2379
-       - ETCD_LISTEN_CLIENT_URLS=http://0.0.0.0:2379
+      - ETCD_ENABLE_V2=true
+      - ETCD_ROOT_PASSWORD=Ai*()890
+      - ETCD_ADVERTISE_CLIENT_URLS=http://etcd:2379
+      - ETCD_LISTEN_CLIENT_URLS=http://0.0.0.0:2379
     volumes:
       - ./data/etcd:/bitnami/etcd
     ports:

@@ -143,8 +143,8 @@ deployment:
     #resync_delay: 5                # when sync failed and a rest is needed, resync after the configured seconds plus 50% random jitter
     #health_check_timeout: 10       # etcd retry the unhealthy nodes after the configured seconds
     startup_retry: 2                # the number of retry to etcd during the startup, default to 2
-#    user: root                     # root username for etcd
-#    password: datagrand            # root password for etcd
+    user: root                     # root username for etcd
+    password: Ai*()890            # root password for etcd
     tls:
       # To enable etcd client certificate you need to build APISIX-Base, see
       # https://apisix.apache.org/docs/apisix/FAQ#how-do-i-build-the-apisix-base-environment
