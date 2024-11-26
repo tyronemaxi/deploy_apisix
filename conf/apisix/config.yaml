@@ -18,7 +18,7 @@
 apisix:
   # node_listen: 9080               # APISIX listening port
   node_listen:                      # This style support multiple ports
-    - 8000
+    - 9080
   #   - port: 9081
   #     enable_http2: true          # If not set, the default value is `false`.
   #   - ip: 127.0.0.2               # Specific IP, If not set, the default value is `0.0.0.0`.

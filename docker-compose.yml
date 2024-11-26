@@ -13,15 +13,15 @@ services:
     ports:
       - "2379:2379"
     restart: always
-    networks:
-      - apisix-network
+#    networks:
+#      - apisix-network
 
   # APISIX 是核心 API 网关服务
   apisix:
-    image: apache/apisix:3.11.0-debian
+    image: tyronextian/apisix:3.10.0-debian
     container_name: apisix
     ports:
-      - "9080:9080"  # 外部请求访问 API 网关
+      - "8000:9080"  # 外部请求访问 API 网关
 #      - "9443:9443"  # 外部请求访问 API 网关（HTTPS）
     volumes:
       - ./data/log/apisix:/usr/local/apisix/logs
@@ -29,14 +29,14 @@ services:
     depends_on:
       - etcd
     restart: always
-    networks:
-      - apisix-network
+#    networks:
+#      - apisix-network
 
   apisix-dashboard:
     image: apache/apisix-dashboard:latest
     container_name: apisix-dashboard
     environment:
-      - APISIX_BASE_URL=http://apisix:9080  # 配置 APISIX 网关地址
+      - APISIX_BASE_URL=http://apisix:8080  # 配置 APISIX 网关地址
       - ETCD_HOST=etcd:2379  # 配置 ETCD 地址
     ports:
       - "9000:9000"  # 访问 Dashboard 管理界面的端口
@@ -46,12 +46,12 @@ services:
       - apisix
       - etcd
     restart: always
-    networks:
-      - apisix-network
+#    networks:
+#      - apisix-network
 
 
-networks:
-  apisix-network:
-    external: true
+#networks:
+#  apisix-network:
+#    external: true
 
 
