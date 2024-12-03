@@ -22,11 +22,12 @@ services:
     image: tyronextian/apisix:3.10.0-debian
     container_name: apisix
     ports:
-      - "8000:9080"  # 外部请求访问 API 网关
+      - "9080:9080"  # 外部请求访问 API 网关
 #      - "9443:9443"  # 外部请求访问 API 网关（HTTPS）
     volumes:
       - ./data/log/apisix:/usr/local/apisix/logs
       - ./conf/apisix/config.yaml:/usr/local/apisix/conf/config.yaml:ro
+      - ./conf/apisix/apisix.yaml:/usr/local/apisix/conf/apisix.yaml:ro
     depends_on:
       - etcd
     restart: always
@@ -34,7 +35,7 @@ services:
 #      - apisix-network
 
   apisix-dashboard:
-    image: apache/apisix-dashboard:latest
+    image: apache/apisix-dashboard:3.0.1-centos
     container_name: apisix-dashboard
     environment:
       - APISIX_BASE_URL=http://apisix:8080  # 配置 APISIX 网关地址
